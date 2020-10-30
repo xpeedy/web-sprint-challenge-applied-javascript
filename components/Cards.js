@@ -1,3 +1,5 @@
+import axios from "axios";
+
 // STEP 3: Create article cards.
 // -----------------------
 // Send an HTTP GET request to the following address: https://lambda-times-api.herokuapp.com/articles
@@ -21,13 +23,34 @@
 //
 // Use your function to create a card for each of the articles, and append each card to the DOM.
 
-function cardMaker(article){
+axios
+.get("https://lambda-times-api.herokuapp.com/articles")
+.then((result) => {
+    const resData = result.data.articles;
+    console.log(resData)
+    // const artArray = resData.map()
+    // console.log(artArray)
+    let array = Array.from(resData)
+    console.log(array)
+    resData.forEach(element => {
+        
+    });
+    // console.log(`${resData[1]}`)
+    // for(let i in resData.i){
+    //     console.log(i)
+    // }
+    let newCard = cardMaker(resData)
+    cardsContainer.appendChild(newCard)
+    
+}) 
+
+function cardMaker(article){//obj
    const card = document.createElement("div")
    card.classList.add("card")
 
    const headline = document.createElement("div")
    headline.classList.add("headline")
-   headline.textContent = ""
+   headline.textContent = article.headline
    card.appendChild(headline)
 
    const author = document.createElement("div")
@@ -39,13 +62,17 @@ function cardMaker(article){
    author.appendChild(imgContainer)
 
    const img = document.createElement("img")
-   img.src = "url here"
+   img.src = article.authorPhoto
    imgContainer.appendChild(img)
 
    const span = document.createElement("span")
-   span.textContent = ""
+   span.textContent = article.authorName
    author.appendChild(span)
 
 
     return card;
 }
+
+let cardsContainer = document.querySelector(".cards-container")
+// let newCard = cardMaker(resData)
+// cardsContainer.appendChild()

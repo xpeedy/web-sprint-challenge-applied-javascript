@@ -17,9 +17,9 @@ axios
 .get("https://lambda-times-api.herokuapp.com/topics")
 .then((result) => {
     let resData = result.data.topics
-    console.log(resData)
+    // console.log(resData)
     resData.forEach(topic => {
-        console.log(topic)
+        // console.log(topic)
         topics.appendChild(newTab(topic))
     });
      
