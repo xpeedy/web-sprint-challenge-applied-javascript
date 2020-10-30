@@ -17,9 +17,10 @@ axios
 .get("https://lambda-times-api.herokuapp.com/topics")
 .then((result) => {
     let resData = result.data.topics
+    console.log(resData)
     resData.forEach(topic => {
         console.log(topic)
-        topics.appendChild(newTab(resData))
+        topics.appendChild(newTab(topic))
     });
      
 })
@@ -37,9 +38,8 @@ axios
 
 
 function newTab(obj){
-    let index = obj[i]
     const div = document.createElement("div")
     div.classList.add("tab")
-    div.textContent = index
+    div.textContent = `${obj}`
     return div;
 }
