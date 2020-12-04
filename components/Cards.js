@@ -27,7 +27,7 @@ import axios from "axios";
 axios
 .get("https://lambda-times-api.herokuapp.com/articles")
 .then((result) => {
-    console.log(result)
+    // console.log(result)
     const resData = result.data.articles;
     // console.log(resData)
     // console.log(resData)
@@ -41,16 +41,15 @@ axios
 
     list.forEach(element => {
         element.forEach((article) => {
-            console.log(article)
+            // console.log(article)
             let newCard = cardMaker(article)
             cardsContainer.appendChild(newCard)
         })
     });  
 })
-
-
-
-
+.catch((err) => {
+    console.log(err)
+})
 
 
 function cardMaker(article){//obj
@@ -69,6 +68,9 @@ function cardMaker(article){//obj
    const imgContainer = document.createElement("div")
    imgContainer.classList.add("img-container")
    author.appendChild(imgContainer)
+   imgContainer.addEventListener("click", (e) => {
+       console.log(e.target)
+   } )
 
    const img = document.createElement("img")
    img.src = article.authorPhoto
