@@ -21,10 +21,11 @@ axios
     resData.forEach(topic => {
         // console.log(topic)
         topics.appendChild(newTab(topic))
-    });
-     
+    });   
 })
-
+.catch((err) => {
+    console.log(err)
+})  
 
     // const resultData = result.data
     // resultData.map()
@@ -32,10 +33,6 @@ axios
     // resultData.forEach(element => {
     //     topics.appendChild(newTab(resultData))
     // });
-
-
-
-
 
 function newTab(obj){
     const div = document.createElement("div")
